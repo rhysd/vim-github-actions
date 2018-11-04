@@ -4,8 +4,9 @@ Vim filetype support for [GitHub Actions][gha]
 This is a Vim filetype support for [GitHub Actions][gha].
 
 It provides:
-- Highlighting `.github/*.workflow` files
-- Indentation for `.github/*.workflow` files
+- Highlighting `.github/*.workflow` files.
+  - It only highlights keywords described in [official document][workflow-doc]. You can easily notice wrong attribute names.
+- Indentation for `.github/*.workflow` files.
 
 ![screenshot](https://github.com/rhysd/ss/blob/master/vim-github-actions/main.png?raw=true)
 
@@ -56,3 +57,4 @@ Please confirm that `ghaworkflow` filetype is set when you open `.github/*.workf
 [MIT License](License.txt)
 
 [gha]: https://github.com/features/actions
+[workflow-doc]: https://developer.github.com/actions/creating-workflows/workflow-configuration-options/

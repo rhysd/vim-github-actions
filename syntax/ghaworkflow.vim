@@ -4,6 +4,9 @@
 " License:    MIT Copyright (c) 2018 rhysd
 " For bugs, patches and license go to https://github.com/rhysd/vim-github-actions
 
+" Note: Official work flow documentation:
+"   https://developer.github.com/actions/creating-workflows/workflow-configuration-options/
+
 if exists("b:current_syntax")
     finish
 endif
@@ -20,7 +23,7 @@ syn match ghaworkflowBlockKind "\<\%(workflow\|action\)\>" nextgroup=ghaworkflow
 syn region ghaworkflowActionName start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowBlockRegion
 syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowBlockRegion contains=@ghaworkflowBody
 syn match ghaworkflowAttr "\h\w*\s*=\s*.\+$" contained containedin=ghaworkflowBodyRegion contains=ghaworkflowAttrName,ghaworkflowString
-syn match ghaworkflowAttrName "\h\w*\%(\s*=\)\@=" contained containedin=ghaworkflowAttr
+syn match ghaworkflowAttrName "\%(on\|resolves\|needs\|uses\|runs\|args\|env\|secrets\)*\%(\s*=\)\@=" contained containedin=ghaworkflowAttr
 syn region ghaworkflowString start=+"+ skip=+\\\\\|\\"+ end=+"+ contained containedin=ghaworkflowAttr
 
 syn sync maxlines=100
