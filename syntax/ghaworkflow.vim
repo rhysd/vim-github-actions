@@ -11,23 +11,23 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-syn cluster ghaworkflowSection contains=ghaworkflowSectionName,ghaworkflowTitle,ghaworkflowString,ghaworkflowSectionRegion,@ghaworkflowBody
-syn cluster ghaworkflowBody contains=ghaworkflowKeyValue,ghaworkflowIdent,ghaworkflowString
+syn cluster ghaworkflowBlock contains=ghaworkflowBlockKind,ghaworkflowActionName,ghaworkflowString,ghaworkflowBlockRegion,@ghaworkflowBody
+syn cluster ghaworkflowBody contains=ghaworkflowAttr,ghaworkflowAttrName,ghaworkflowString
 
-syn match ghaworkflowSectionRegion +^\<\%(workflow\|action\)\s\+"\%(\\"\|[^"]\)*"\s*{\_[^}]*}+ contains=@ghaworkflowSection
+syn match ghaworkflowBlockRegion +^\<\%(workflow\|action\)\s\+"\%(\\"\|[^"]\)*"\s*{\_[^}]*}+ contains=@ghaworkflowBlock
 " syn region ghaworkflowSectionBody start=/{/ end=/}/
-syn match ghaworkflowSectionName "\<\%(workflow\|action\)\>" nextgroup=ghaworkflowSectionTitle skipwhite skipnl contained containedin=ghaworkflowSectionRegion display
-syn region ghaworkflowSectionTitle start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowSectionRegion
-syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowSectionRegion contains=@ghaworkflowBody
-syn match ghaworkflowKeyValue "\h\w*\s*=\s*.\+$" contained containedin=ghaworkflowBodyRegion contains=ghaworkflowIdent,ghaworkflowString
-syn match ghaworkflowIdent "\h\w*\%(\s*=\)\@=" contained containedin=ghaworkflowKeyValue
-syn region ghaworkflowString start=+"+ skip=+\\\\\|\\"+ end=+"+ contained containedin=ghaworkflowKeyValue
+syn match ghaworkflowBlockKind "\<\%(workflow\|action\)\>" nextgroup=ghaworkflowActionName skipwhite skipnl contained containedin=ghaworkflowBlockRegion display
+syn region ghaworkflowActionName start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowBlockRegion
+syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowBlockRegion contains=@ghaworkflowBody
+syn match ghaworkflowAttr "\h\w*\s*=\s*.\+$" contained containedin=ghaworkflowBodyRegion contains=ghaworkflowAttrName,ghaworkflowString
+syn match ghaworkflowAttrName "\h\w*\%(\s*=\)\@=" contained containedin=ghaworkflowAttr
+syn region ghaworkflowString start=+"+ skip=+\\\\\|\\"+ end=+"+ contained containedin=ghaworkflowAttr
 
 syn sync maxlines=100
 
-hi def link ghaworkflowSectionName Statement
-hi def link ghaworkflowSectionTitle Title
-hi def link ghaworkflowIdent Identifier
+hi def link ghaworkflowBlockKind Statement
+hi def link ghaworkflowActionName Title
+hi def link ghaworkflowAttrName Identifier
 hi def link ghaworkflowString String
 
 let b:current_syntax = "ghaworkflow"
