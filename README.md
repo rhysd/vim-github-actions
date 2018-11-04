@@ -7,6 +7,7 @@ It provides:
 - Highlighting `.github/*.workflow` files
 - Indentation for `.github/*.workflow` files
 
+![screenshot](https://github.com/rhysd/ss/blob/master/vim-github-actions/main.png?raw=true)
 
 ## Installation
 
