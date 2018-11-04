@@ -5,7 +5,7 @@ This is a Vim filetype support for [GitHub Actions][gha].
 
 It provides:
 - Highlighting `.github/*.workflow` files
-- NOT YET: Indentation for `.github/*.workflow` files
+- Indentation for `.github/*.workflow` files
 
 
 ## Installation
