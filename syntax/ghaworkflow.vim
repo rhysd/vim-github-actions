@@ -17,12 +17,12 @@ set cpo&vim
 syn cluster ghaworkflowBlock contains=ghaworkflowBlockKind,ghaworkflowActionName,ghaworkflowString,ghaworkflowBlockRegion,@ghaworkflowBody
 syn cluster ghaworkflowBody contains=ghaworkflowAttr,ghaworkflowAttrName,ghaworkflowString
 
-syn match ghaworkflowBlockRegion +^\<\%(workflow\|action\)\s\+"\%(\\"\|[^"]\)*"\s*{\_[^}]*}+ contains=@ghaworkflowBlock
-syn match ghaworkflowBlockKind "\<\%(workflow\|action\)\>" nextgroup=ghaworkflowActionName skipwhite skipnl contained containedin=ghaworkflowBlockRegion display
+syn match ghaworkflowBlockRegion /^\<\%(workflow\|action\)\s\+"\%(\\"\|[^"]\)*"\s*{\_[^}]*}/ contains=@ghaworkflowBlock
+syn match ghaworkflowBlockKind /\<\%(workflow\|action\)\>/ nextgroup=ghaworkflowActionName skipwhite skipnl contained containedin=ghaworkflowBlockRegion display
 syn region ghaworkflowActionName start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowBlockRegion
 syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowBlockRegion contains=@ghaworkflowBody
-syn match ghaworkflowAttr "\h\w*\s*=\s*.\+$" contained containedin=ghaworkflowBodyRegion contains=ghaworkflowAttrName,ghaworkflowString
-syn match ghaworkflowAttrName "\%(on\|resolves\|needs\|uses\|runs\|args\|env\|secrets\)*\%(\s*=\)\@=" contained containedin=ghaworkflowAttr
+syn match ghaworkflowAttr /\h\w*\s*=\s*.\+$/ contained containedin=ghaworkflowBodyRegion contains=ghaworkflowAttrName,ghaworkflowString
+syn match ghaworkflowAttrName /\%(on\|resolves\|needs\|uses\|runs\|args\|env\|secrets\)*\%(\s*=\)\@=/ contained containedin=ghaworkflowAttr
 syn region ghaworkflowString start=+"+ skip=+\\\\\|\\"+ end=+"+ contained containedin=ghaworkflowAttr
 
 syn sync maxlines=100
