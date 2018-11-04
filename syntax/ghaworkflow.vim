@@ -18,7 +18,6 @@ syn cluster ghaworkflowBlock contains=ghaworkflowBlockKind,ghaworkflowActionName
 syn cluster ghaworkflowBody contains=ghaworkflowAttr,ghaworkflowAttrName,ghaworkflowString
 
 syn match ghaworkflowBlockRegion +^\<\%(workflow\|action\)\s\+"\%(\\"\|[^"]\)*"\s*{\_[^}]*}+ contains=@ghaworkflowBlock
-" syn region ghaworkflowSectionBody start=/{/ end=/}/
 syn match ghaworkflowBlockKind "\<\%(workflow\|action\)\>" nextgroup=ghaworkflowActionName skipwhite skipnl contained containedin=ghaworkflowBlockRegion display
 syn region ghaworkflowActionName start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowBlockRegion
 syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowBlockRegion contains=@ghaworkflowBody
