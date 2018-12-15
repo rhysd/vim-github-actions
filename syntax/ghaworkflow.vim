@@ -22,7 +22,8 @@ syn match ghaworkflowBlockKind /\<\%(workflow\|action\)\>/ nextgroup=ghaworkflow
 syn region ghaworkflowActionName start=+"+ skip=+\\\\\|\\"+ end=+"+ nextgroup=ghaworkflowBodyRegion skipwhite skipnl contained containedin=ghaworkflowBlockRegion
 syn region ghaworkflowBodyRegion start=+{+ end=+}+ contained containedin=ghaworkflowBlockRegion contains=@ghaworkflowBody
 syn match ghaworkflowAttr /\h\w*\s*=\s*.\+$/ contained containedin=ghaworkflowBodyRegion contains=ghaworkflowAttrName,ghaworkflowString
-syn match ghaworkflowAttrName /\%(on\|resolves\|needs\|uses\|runs\|args\|env\|secrets\)*\%(\s*=\)\@=/ contained containedin=ghaworkflowAttr
+syn match ghaworkflowEnvName /\h\w*\%(\s*=\s*"\)\@=/ contained containedin=ghaworkflowAttr
+syn match ghaworkflowAttrName /\%(on\|resolves\|needs\|uses\|runs\|args\|env\|secrets\)\%(\s*=\)\@=/ contained containedin=ghaworkflowAttr
 syn region ghaworkflowString start=+"+ skip=+\\\\\|\\"+ end=+"+ contained containedin=ghaworkflowAttr
 
 syn sync maxlines=100
@@ -30,6 +31,7 @@ syn sync maxlines=100
 hi def link ghaworkflowBlockKind Statement
 hi def link ghaworkflowActionName Title
 hi def link ghaworkflowAttrName Identifier
+hi def link ghaworkflowEnvName PreProc
 hi def link ghaworkflowString String
 
 let b:current_syntax = "ghaworkflow"
